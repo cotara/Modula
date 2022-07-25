@@ -19,7 +19,7 @@ Ticks = 0;
   TIM_InternalClockConfig(TIM2);
   TIM_TimeBaseStructure.TIM_Prescaler = 168-1;                                   //Частота шины 84МГц, но 84000 поставить нельзя потому, что там 2 байта
   TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-  TIM_TimeBaseStructure.TIM_Period = 1000;                                      //1мс
+  TIM_TimeBaseStructure.TIM_Period = 3000;                                      //1мс
   TIM_TimeBaseStructure.TIM_ClockDivision = 0;
   TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;
   TIM_TimeBaseInit(TIM2,&TIM_TimeBaseStructure);

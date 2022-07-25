@@ -17,6 +17,7 @@
 **/settings/*.dni
 **/settings/*.wsdt
 **/settings/*.wspos
+**/settings/*.dnx
 
 # IAR Debug Exe
 **/Debug/Exe/
@@ -26,6 +27,7 @@
 
 # IAR Debug Obj
 **/Obj/*.pbd
+**/Obj/*.pbw
 **/Obj/*.pbd.*
 **/Obj/*.pbi
 **/Obj/*.pbi.*

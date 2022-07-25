@@ -2,9 +2,12 @@
 #include "stm32f2xx_it.h"
 #include "time_user.h"
 #include "LED_user.h"
+#include "stm32_ub_dac_dma.h"
 
 extern uint32_t delay_decrement_1mcs;
 uint32_t ms=0;
+uint32_t m_x=1325,m_vector=0;
+
 uint32_t counter=0;
 
 void HardFault_Handler(void) {
@@ -22,11 +25,23 @@ void SysTick_Handler(void) {
 
 
 void TIM2_IRQHandler(void) {
-    ms++;
-    if(ms==1000){
-        ms=0;
-        LEDToggle();
-    }
+     ms++;
+//    if(ms==1000){
+//        ms=0;
+//        LEDToggle();
+//    }
+     if(m_vector==0){
+      m_x--;
+      if(m_x==262)
+          m_vector=1;
+     }
+     if(m_vector==1){
+      m_x++;
+      if(m_x==1325)
+          m_vector=0;
+     }
+    UB_DAC_DMA_SetFrq1(1,m_x);//8749
+    
     TIM_ClearFlag(TIM2, TIM_IT_Update);
     
 }
@@ -38,9 +53,7 @@ void TIM5_IRQHandler(void) {
 
 void TIM6_DAC_IRQHandler() {
     if (TIM_GetITStatus(TIM6, TIM_IT_Update) != RESET) {
-        TIM_ClearITPendingBit(TIM6, TIM_IT_Update);
-
-      
+        TIM_ClearITPendingBit(TIM6, TIM_IT_Update);  
     }
 }
 

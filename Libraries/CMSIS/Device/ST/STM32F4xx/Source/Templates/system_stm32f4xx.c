@@ -616,7 +616,6 @@ static void SetSysClock(void)
 #endif /* STM32F401xx */
    
     /* Configure the main PLL */
-    uint32_t m_temp=PLL_M;
     RCC->PLLCFGR = PLL_M | (PLL_N << 6) | (((PLL_P >> 1) -1) << 16) |
                    (RCC_PLLCFGR_PLLSRC_HSE) | (PLL_Q << 24);
 
